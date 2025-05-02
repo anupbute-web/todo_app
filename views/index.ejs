@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <%- include('partials/header') %>
+        <link rel="stylesheet" href="/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Todo List</h1>
+        <form action="/add" method="POST">
+            <input type="text" name="task" placeholder="New task" required>
+            <select name="priority">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+            <button type="submit">Add Task</button>
+        </form>
+
+        <ul>
+            <% todos.forEach(todo=> { %>
+                <li>
+                    <%= todo.task %> - <%= todo.priority %>
+                            <form action="/delete" method="POST" style="display:inline;">
+                                <input type="hidden" name="id" value="<%= todo.id %>">
+                                <button type="submit">Delete</button>
+                            </form>
+                </li>
+                <% }) %>
+        </ul>
+    </div>
+    <%- include('partials/footer') %>
+</body>
+
+</html>
