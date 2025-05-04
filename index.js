@@ -31,7 +31,7 @@ app.get('/edit/:id', (req, res) => {
   if (todo) {
     res.render('edit', { todo });
   } else {
-    res.status(404).send('Task not found');
+    res.redirect("/")
   }
 });
 
