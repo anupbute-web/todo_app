@@ -37,6 +37,7 @@
                 max-width: 1200px;
                 display: flex;
                 flex-direction: column;
+                flex-wrap: wrap;
                 margin: 20px auto;
                 padding: 20px;
                 background-color: white;
@@ -45,6 +46,7 @@
             }
 
             .my_style {
+                min-width: 100px;
                 margin-bottom: 10px;
                 padding: 10px 5px;
                 padding: 10px;
@@ -56,6 +58,22 @@
             footer {
                 font-size: 0.9rem;
                 text-align: center;
+            }
+
+            @media (max-width: 768px) {
+                .container {
+                    width: 95%;
+                    padding: 15px;
+                }
+
+                form {
+                    flex-direction: column;
+                }
+
+                ul li {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
             }
         </style>
 </head>
