@@ -26,11 +26,34 @@ app.post('/add', (req, res) => {
   res.redirect('/');
 });
 
+app.get('/edit/:id', (req, res) => {
+  const todo = todos.find(t => t.id === parseInt(req.params.id));
+  if (todo) {
+    res.render('edit', { todo });
+  } else {
+    res.status(404).send('Task not found');
+  }
+});
+
+app.post('/edit/:id', (req, res) => {
+  const { task, priority } = req.body;
+  const todo = todos.find(t => t.id === parseInt(req.params.id));
+  if (todo) {
+    todo.task = task;
+    todo.priority = priority;
+    res.redirect('/');
+  } else {
+    res.status(404).send('Task not found');
+  }
+});
+
+
 app.post('/delete', (req, res) => {
-  const id = parseInt(req.body.id);
-  todos = todos.filter(todo => todo.id !== id);
+  const { id } = req.body;
+  todos = todos.filter(todo => todo.id != id);
   res.redirect('/');
 });
+
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
