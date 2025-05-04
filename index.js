@@ -31,7 +31,7 @@ app.get('/edit/:id', (req, res) => {
   if (todo) {
     res.render('edit', { todo });
   } else {
-    res.redirect("/")
+    res.redirect()
   }
 });
 
